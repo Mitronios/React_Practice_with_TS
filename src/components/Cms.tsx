@@ -17,7 +17,6 @@ function Cms() {
 
   const deleteContact = (id: string) =>
     setContacts(contacts.filter((c) => c.id != id));
-  console.log(contacts);
   return (
     <div className="container">
       <div className="row">

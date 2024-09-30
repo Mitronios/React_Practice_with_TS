@@ -2,7 +2,7 @@ import { z } from "zod";
 
 export const contacTypeOptions = [
   "Familiar",
-  "work",
+  "Work",
   "Friend",
   "Other",
 ] as const;
@@ -19,7 +19,9 @@ export const contactSchema = z.object({
     .string()
     .min(1, { message: "Email is required." })
     .email("Invalid email"),
-  type: z.enum(contacTypeOptions),
+  type: z.enum(contacTypeOptions, {
+    errorMap: () => ({ message: "Please select a type." }),
+  }),
 });
 
 export type Contact = z.infer<typeof contactSchema> & { id: string };
